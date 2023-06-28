@@ -1,13 +1,19 @@
 import React, { useEffect,  useState } from 'react';
-import logo from '../Images/logo-no-background.png';
 import Header from './Header.js'
 import '../css files/App.css';
+import CardDisplay from './CardDisplay';
+import DeckDisplay from './DeckDisplay';
 
 function App() {
-  const [cards, setCards] = useState(null);
+  const [searchedCard, setSearchedCard] = useState(null);
+  const [data, setData] = useState({Commander: null, Planeswalker: null, Creatures: null, Sorceries: null, Instants: null, Artifacts: null, Enchantments: null, Lands: null})
   return (
     <div className="App">
-      <Header cards={cards} setCards={setCards} />
+      <Header setSearchedCard={setSearchedCard} />
+      <main>
+        <CardDisplay searchedCard={searchedCard} />
+        <DeckDisplay searchedCard={searchedCard} setSearchedCard={setSearchedCard} />
+      </main>
     </div>
   );
 }
