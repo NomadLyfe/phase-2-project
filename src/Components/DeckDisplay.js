@@ -2,32 +2,45 @@ import React, { useEffect,  useState } from 'react';
 import '../css files/App.css';
 
 function DeckDisplay({ searchedCard, setSearchedCard }) {
+	const types = ['Planeswalker', 'Creature', 'Sorcery', 'Instant', 'Artifact', 'Enchantment', 'Land'];
+	const [cardList, setCardList] = useState([]);
+	useEffect(() => {
+		setCardList([...cardList, searchedCard]);
+	}, [searchedCard]);
+	const deckCards = types.map(type => {
+		
+
+		const reactCardsByType = cardList.map(card => {
+			if (!card) return <div className='noCards'></div>
+			return (
+				<div key={card.name}>
+					{card && card.type_line.includes(`${type}`) ? <img src={card.image_uris.normal} className="deckCard" alt={card.name} /> : null}
+				</div>
+			)
+		})
+
+		const cardsByType = cardList.filter(el => {
+			if (!el) return false;
+			return el.type_line.includes(`${type}`)
+		})
+
+		return (
+			<div key={type}>
+				<h3>
+					{type === 'Sorcery' ? 'Sorcerie' : type}s ({cardsByType.length})
+				</h3>
+				{reactCardsByType}
+			</div>
+		)
+	});
   return (
     <div className='deckwrapper'>
-			<h3>
-				Commander ({searchedCard ? searchedCard.length : null})
-			</h3>
-			<h3>
-				Planeswalkers ({})
-			</h3>
-			<h3>
-				Creatures ({})
-			</h3>
-			<h3>
-				Sorceries ({})
-			</h3>
-			<h3>
-				Instants ({})
-			</h3>
-			<h3>
-				Artifacts ({})
-			</h3>
-			<h3>
-				Enchantments ({})
-			</h3>
-			<h3>
-				Lands ({})
-			</h3>
+			<div>
+				<h3>
+					Commander (1)
+				</h3>
+			</div>
+			{deckCards}
     </div>
   );
 }

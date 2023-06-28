@@ -82,3 +82,15 @@ main {
   padding: 50px;
   width: 500px;
 }
+
+.deckCard {
+  width: 200px;
+}
+
+.deckCard:hover {
+  width: 210px;  
+}
+
+.noCards {
+  height: 20px;
+}
