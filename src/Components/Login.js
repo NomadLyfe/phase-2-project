@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from '../Images/logo-no-background.png';
 import '../css files/App.css';
+import FoodForm from './FoodForm';
 
 function Login({ handleSubmit, handleChange, logindata }) {
   return (
@@ -15,6 +16,7 @@ function Login({ handleSubmit, handleChange, logindata }) {
 				<br />
 				<button>Log In</button>
 			</form>
+			<FoodForm />
     </div>
   );
 }
