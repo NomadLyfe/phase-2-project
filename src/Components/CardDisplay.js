@@ -1,7 +1,7 @@
-import React, { useEffect,  useState } from 'react';
+import React from 'react';
 import '../css files/App.css';
 
-function CardDisplay({ selectedCard }) {
+function CardDisplay({ selectedCard, commander }) {
   return (
     <div className='cardwrapper'>
 			<div className="Card-logo" >

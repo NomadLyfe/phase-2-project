@@ -1,0 +1,9 @@
+{
+	"logins": [
+    {
+			"id": "admin",
+      "username": "admin",
+			"password": "admin1"
+		}
+  ]
+}

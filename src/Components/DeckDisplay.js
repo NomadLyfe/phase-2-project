@@ -1,7 +1,7 @@
-import React, { useEffect,  useState } from 'react';
+import React, { useEffect } from 'react';
 import '../css files/App.css';
 
-function DeckDisplay({ searchedCard, setSearchedCard, cardList, setCardList, handleMouseOver }) {
+function DeckDisplay({ searchedCard, setSearchedCard, cardList, setCardList, handleMouseOver, commander }) {
 	const types = ['Planeswalker', 'Creature', 'Sorcery', 'Instant', 'Artifact', 'Enchantment', 'Land'];
 	useEffect(() => {
 		setCardList([...cardList, searchedCard]);
@@ -34,8 +34,11 @@ function DeckDisplay({ searchedCard, setSearchedCard, cardList, setCardList, han
     <div className='deckwrapper'>
 			<div>
 				<h3>
-					Commander (1)
+					Commander ({commander.length})
 				</h3>
+				<div>
+					<img src={commander.image_uris.normal} className="deckCard" alt={commander.name} onMouseOver={handleMouseOver} />
+				</div>
 			</div>
 			{deckCards}
     </div>
