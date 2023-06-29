@@ -6,13 +6,24 @@ import DeckDisplay from './DeckDisplay';
 
 function App() {
   const [searchedCard, setSearchedCard] = useState(null);
-  const [data, setData] = useState({Commander: null, Planeswalker: null, Creatures: null, Sorceries: null, Instants: null, Artifacts: null, Enchantments: null, Lands: null})
+  const [cardList, setCardList] = useState([]);
+  const [selectedCard, setSelectedCard] = useState(null);
+  function onSearch(card) {
+    setSelectedCard(card)
+  }
+  function handleMouseOver(e) {
+    fetch(`http://localhost:3000/cards/${e.target.alt}`)
+    .then(res => res.json())
+    .then(card => {
+      setSelectedCard(card);
+		});
+  }
   return (
     <div className="App">
-      <Header setSearchedCard={setSearchedCard} />
+      <Header setSearchedCard={setSearchedCard} onSearch={onSearch} cardList={cardList} />
       <main>
-        <CardDisplay searchedCard={searchedCard} />
-        <DeckDisplay searchedCard={searchedCard} setSearchedCard={setSearchedCard} />
+        <CardDisplay selectedCard={selectedCard} />
+        <DeckDisplay searchedCard={searchedCard} setSearchedCard={setSearchedCard} cardList={cardList} setCardList={setCardList} handleMouseOver={handleMouseOver} />
       </main>
     </div>
   );

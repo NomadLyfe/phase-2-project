@@ -64,33 +64,72 @@
 
 main {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  background-color: #DCDCDC;
+  border-top: 1px #9634E4 solid;
 }
 
 .deckwrapper {
   text-align: left;
   padding: 30px;
-  padding-left: 50px;
-  background-color: #DCDCDC;
-  width: 64.6vw;
+  padding-left: 0px;
+  background-color: #282634;
+  color: #DCDCDC;
+  width: 85vw;
   min-height: 78vh;
 }
 
 .cardwrapper {
-  position: sticky;
-  position: -webkit-sticky;
   padding: 50px;
-  width: 500px;
+  width: 15vw;
+  z-index: 2;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  background-color: #282634;
+  color: #DCDCDC;
+}
+
+.Card-logo {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 50px;
+}
+
+.Card {
+  width: 15vw;
+  border-radius: 15px;
 }
 
 .deckCard {
-  width: 200px;
+  height: 240px;
+  overflow-x: auto;
+  position: relative;
+  top: 0;
+  transition: top ease 0.5s;
+  border-radius: 9px;
 }
 
 .deckCard:hover {
-  width: 210px;  
+  top: -10px;
 }
 
 .noCards {
   height: 20px;
+}
+
+.cardsByType {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.foil-box {
+  display: inline-block;
+  height: calc(1rem - 2px);
+  width: 0.5rem;
+  border-radius: 1px;
+  margin-left: 3px;
+  vertical-align: -1px;
+  background-color: #FA8BFF;
+  background-image: linear-gradient(45deg, #FA8BFF 20%, #2BD2FF 52%, #2BFF88 80%);
 }

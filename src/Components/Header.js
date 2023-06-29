@@ -2,7 +2,7 @@ import React, { useEffect,  useState } from 'react';
 import logo from '../Images/logo-no-background.png';
 import '../css files/App.css';
 
-function Header({ setSearchedCard }) {
+function Header({ setSearchedCard, onSearch, cardList }) {
 	const [input, setInput] = useState('');
 	function handleChange(e) {
 		setInput(e.target.value);
@@ -12,7 +12,13 @@ function Header({ setSearchedCard }) {
     fetch(`http://localhost:3000/cards/${input}`)
     .then(res => res.json())
     .then(card => {
-			setSearchedCard(card);
+			const check = cardList.filter(el => !!el && el.name === card.name);
+			if (!check[0] || check[0].name === "Dragon's Approach" || check[0].name === 'Persistent Petitioners' || check[0].name === 'Rat Colony' || check[0].name === 'Relentless Rats' || check[0].name === 'Shadowborn Apostle' || check[0].type_line.includes('Basic Land')) {
+        setSearchedCard(card);
+				onSearch(card);
+      } else {
+				alert('\n You already added this card. \n \n Commander format allows for only one copy of each unique card. \n \n Please try another card.')
+			}
 			setInput('');
 		});
 	}

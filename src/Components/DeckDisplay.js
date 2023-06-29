@@ -1,35 +1,32 @@
 import React, { useEffect,  useState } from 'react';
 import '../css files/App.css';
 
-function DeckDisplay({ searchedCard, setSearchedCard }) {
+function DeckDisplay({ searchedCard, setSearchedCard, cardList, setCardList, handleMouseOver }) {
 	const types = ['Planeswalker', 'Creature', 'Sorcery', 'Instant', 'Artifact', 'Enchantment', 'Land'];
-	const [cardList, setCardList] = useState([]);
 	useEffect(() => {
 		setCardList([...cardList, searchedCard]);
 	}, [searchedCard]);
 	const deckCards = types.map(type => {
-		
-
 		const reactCardsByType = cardList.map(card => {
-			if (!card) return <div className='noCards'></div>
+			if (!card) return <div className='noCards' key={card}></div>
 			return (
 				<div key={card.name}>
-					{card && card.type_line.includes(`${type}`) ? <img src={card.image_uris.normal} className="deckCard" alt={card.name} /> : null}
+					{card && card.type_line.includes(`${type}`) ? <img src={card.image_uris.normal} className="deckCard" alt={card.name} onMouseOver={handleMouseOver} /> : null}
 				</div>
 			)
 		})
-
 		const cardsByType = cardList.filter(el => {
 			if (!el) return false;
 			return el.type_line.includes(`${type}`)
 		})
-
 		return (
 			<div key={type}>
 				<h3>
 					{type === 'Sorcery' ? 'Sorcerie' : type}s ({cardsByType.length})
 				</h3>
-				{reactCardsByType}
+				<div className='cardsByType'>
+					{reactCardsByType}
+				</div>
 			</div>
 		)
 	});
