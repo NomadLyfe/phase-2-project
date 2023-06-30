@@ -3,10 +3,10 @@ import logo from '../Images/logo-no-background.png';
 import '../css files/App.css';
 
 function Newdeck({ handleSubmit }) {
-	const [input, setInput] = useState('');
+	const [formData, setFormData] = useState({deckname: '', commander: ''});
 	const [clicked, setClicked] = useState(false);
 	function handleChange(e) {
-		setInput(e.target.value)
+		setFormData({...formData, [e.target.name]: e.target.value})
 	}
 	function handleClick() {
 		setClicked(true);
@@ -14,9 +14,14 @@ function Newdeck({ handleSubmit }) {
   return (
 		<div>
 			<div className='newdeck'>
+				<button className='logout'>Log Out</button>
 				<img src={logo} className='newdecklogo' />
-				{clicked ? null : <button onClick={handleClick}>Make a new deck <br /> <span>+</span> </button>}
-				{clicked ? <form onSubmit={(e) => handleSubmit(e, input)}><label>Choose a Commander:</label><br /><input type='text' onChange={handleChange} value={input} /></form> : null}
+				{clicked ? null : <button className='newdeckbutton' onClick={handleClick}>Make a new deck <br /> <span>+</span> </button>}
+				{clicked ? <form onSubmit={(e) => handleSubmit(e, formData)}>
+					<label>Make a Deck Name:</label><br /><input name='deckname' type='text' onChange={handleChange} value={formData.deckname} /><br />
+					<label>Choose a Commander:</label><br /><input name='commander' type='text' onChange={handleChange} value={formData.commander} /><br />
+					<button>Submit</button>
+				</form> : null}
 			</div>
 			<div className='decks'>
 

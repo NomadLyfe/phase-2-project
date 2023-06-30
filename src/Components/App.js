@@ -11,23 +11,26 @@ function App() {
   const [cardList, setCardList] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
   const [logindata, setLogindata] = useState({ username: '', password: '' });
-  const [logedin, setLogedin] = useState(false);
   const [commander, setCommander] = useState(null);
+  const [user, setUser] = useState(null);
   function onSearch(card) {
     setSelectedCard(card)
   }
   function handleMouseOver(e) {
-    fetch(`http://localhost:3000/cards/${e.target.alt}`)
+    fetch(`https://api.scryfall.com/cards/search?q=${e.target.alt}&unique=cards`)
     .then(res => res.json())
-    .then(card => setSelectedCard(card));
+    .then(card => {
+      const correctCard = card.data.filter(el => el.name === e.target.alt);
+      setSelectedCard(correctCard[0]);
+    });
   }
   function handleLogin (e) {
     e.preventDefault();
-    fetch(`http://localhost:4000/logins/${logindata.username}`)
+    fetch(`http://localhost:3001/users/${logindata.username}`)
     .then(res => res.json())
     .then(loginInfo => {
       if (loginInfo.password === logindata.password) {
-        setLogedin(true);
+        setUser(loginInfo.username)
       } else {
         setLogindata({ username: '', password: '' });
         alert('\nIncorrect username or password!');
@@ -37,16 +40,20 @@ function App() {
   function trackLogin (e) {
     setLogindata({...logindata, [e.target.previousSibling.id]: e.target.value});
   }
-  function handleCommanderSelection(e, input) {
+  function handleNewDeck (e, formData) {
     e.preventDefault();
-    fetch(`http://localhost:3000/cards/${input}`)
+    fetch(`https://api.scryfall.com/cards/search?q=${formData.commander}&unique=cards`)
     .then(res => res.json())
-    .then(comm => setCommander(comm));
+    .then(card => {
+      const correctCard = card.data.filter(el => el.name === formData.commander);
+      setCommander(correctCard[0]);
+    });
   }
-  if (!logedin) return <Login handleSubmit={handleLogin} handleChange={trackLogin} logindata={logindata} />
-  if (!commander) return <Newdeck handleSubmit={handleCommanderSelection} />
+  if (!user) return <Login handleSubmit={handleLogin} handleChange={trackLogin} logindata={logindata} />
+  if (!commander) return <Newdeck handleSubmit={handleNewDeck} />
   return (
     <div className="App">
+      <button className='logout'>Log Out</button>
       <Header setSearchedCard={setSearchedCard} onSearch={onSearch} cardList={cardList} />
       <main>
         <CardDisplay selectedCard={selectedCard} commander={commander} />

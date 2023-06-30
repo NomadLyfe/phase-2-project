@@ -82,6 +82,7 @@ main {
 .cardwrapper {
   padding: 50px;
   width: 15vw;
+  min-width: 288px;
   z-index: 2;
   border-right: none;
   border-top: none;
@@ -169,12 +170,24 @@ main {
   justify-content: center;
 }
 
-.newdeck button {
+.logout {
+  position: fixed;
+  width: 80px;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #9534e487;
+  background-color: #dcdcdc20;
+  color: #DCDCDC;
+  top: 10px;
+  right: 10px;
+}
+
+.newdeckbutton {
   width: 200px;
   height: 146px;
   border-radius: 20px;
   border: 1px solid #9534e487;
-  background-color: #dcdcdc1c;
+  background-color: #dcdcdc20;
   color: #DCDCDC;
 }
 
@@ -191,4 +204,12 @@ main {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+.newdeck button span {
+  font-size: 50pt;
+}
+
+.newdeck button:hover {
+  background-color: #dcdcdc40;
 }
