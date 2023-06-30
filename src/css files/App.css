@@ -152,6 +152,11 @@ main {
   width: 40vw;
 }
 
+.newdecklogo {
+  padding: 100px;
+  width: 40vw;
+}
+
 .loginform {
   display: flex;
   flex-direction: column;
@@ -165,8 +170,6 @@ main {
   height: 100vh;
   width: 100vw;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
 }
 
@@ -211,5 +214,59 @@ main {
 }
 
 .newdeck button:hover {
+  background-color: #dcdcdc40;
+}
+
+.decks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-bottom: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.deckPage {
+  background-color: #282634;
+  color: #DCDCDC;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.decks button {
+  width: 200px;
+  height: 146px;
+  border-radius: 20px;
+  border: 1px solid #9534e487;
+  background-color: #dcdcdc20;
+  color: #DCDCDC;
+}
+
+.decks button:hover {
+  background-color: #dcdcdc40;
+}
+
+.logout:hover {
+  background-color: #dcdcdc40;
+}
+
+.mydecksbtn {
+  position: fixed;
+  width: 80px;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #9534e487;
+  background-color: #dcdcdc20;
+  color: #DCDCDC;
+  top: 70px;
+  right: 10px;
+}
+
+.mydecksbtn:hover {
   background-color: #dcdcdc40;
 }

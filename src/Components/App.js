@@ -4,7 +4,8 @@ import '../css files/App.css';
 import CardDisplay from './CardDisplay';
 import DeckDisplay from './DeckDisplay';
 import Login from './Login.js';
-import Newdeck from './Newdeck.js';
+import MyDecks from './MyDecks.js';
+import { Switch, Route } from "react-router-dom";
 
 function App() {
   const [searchedCard, setSearchedCard] = useState(null);
@@ -13,6 +14,7 @@ function App() {
   const [logindata, setLogindata] = useState({ name: '', password: '' });
   const [commander, setCommander] = useState(null);
   const [user, setUser] = useState(null);
+  const [deckList, setDeckList] = useState([]);
   function onSearch(card) {
     setSelectedCard(card)
   }
@@ -36,6 +38,13 @@ function App() {
         setLogindata({ name: '', password: '' });
         alert('\nIncorrect username or password!');
       }
+    });
+    fetch(`http://localhost:3001/decks`)
+    .then(res => res.json())
+    .then(decks => {
+      const decksOwnedByCurrentUser = decks.filter(deck => deck.owner === logindata.name);
+      console.log(decksOwnedByCurrentUser)
+      setDeckList(decksOwnedByCurrentUser);
     })
   }
   function trackLogin (e) {
@@ -50,7 +59,6 @@ function App() {
       setCommander(correctCard[0]);
       setSelectedCard(correctCard[0]);
     });
-    console.log(formData)
     fetch("http://localhost:3001/decks/", {
       method: 'POST',
       headers: {
@@ -67,11 +75,37 @@ function App() {
     setUser(null);
     setSearchedCard(null);
   }
+  function handleSelectDeck (e, deck) {
+    e.preventDefault();
+    fetch(`https://api.scryfall.com/cards/search?q=${deck.commander}&unique=cards`)
+    .then(res => res.json())
+    .then(card => {
+      const correctCard = card.data.filter(el => el.name === deck.commander);
+      setCommander(correctCard[0]);
+      setSelectedCard(correctCard[0]);
+    });
+  }
   if (!user) return <Login handleSubmit={handleLogin} handleChange={trackLogin} logindata={logindata} />
-  if (!commander) return <Newdeck handleSubmit={handleNewDeck} handleLogout={handleLogout} user={user} />
+  if (!commander) return <MyDecks handleSubmit={handleNewDeck} handleLogout={handleLogout} user={user} deckList={deckList} handleSelectDeck={handleSelectDeck} />
   return (
     <div className="App">
+      
+      <Switch>
+        <Route exact path="/Login">
+
+        </Route>
+        <Route exact path="/MyDecks">
+          
+        </Route>
+        <Route exact path={commander}>
+          
+        </Route>
+        <Route path="*">
+          
+        </Route>
+      </Switch>
       <button className='logout' onClick={handleLogout}>Log Out</button>
+      <button className='mydecksbtn'>My Decks</button>
       <Header setSearchedCard={setSearchedCard} onSearch={onSearch} cardList={cardList} />
       <main>
         <CardDisplay selectedCard={selectedCard} commander={commander} />

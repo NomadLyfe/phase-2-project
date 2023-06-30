@@ -3,6 +3,10 @@
     {
       "name": "admin",
       "password": "admin"
+    },
+    {
+      "name": "ChunkyCheese",
+      "password": "ratpie123!"
     }
   ],
   "decks": [
@@ -15,6 +19,21 @@
       "owner": "admin",
       "name": "goblins",
       "commander": "Krenko, Mob Boss"
+    },
+    {
+      "owner": "admin",
+      "name": "Control Zur",
+      "commander": "Zur the Enchanter"
+    },
+    {
+      "owner": "admin",
+      "name": "Make people very sad",
+      "commander": "Frodo, Sauron's Bane"
+    },
+    {
+      "owner": "ChunkyCheese",
+      "name": "group hug",
+      "commander": "Angus Mackenzie"
     }
   ]
 }
