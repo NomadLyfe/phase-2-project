@@ -1,9 +1,20 @@
 {
-	"users": [
-		{
-			"username": "admin",
-			"password": "admin",
-			"decks": []
-		}
-	]
+  "users": [
+    {
+      "name": "admin",
+      "password": "admin"
+    }
+  ],
+  "decks": [
+    {
+      "owner": "admin",
+      "name": "dragon",
+      "commander": "Zur the Enchanter"
+    },
+    {
+      "owner": "admin",
+      "name": "goblins",
+      "commander": "Krenko, Mob Boss"
+    }
+  ]
 }

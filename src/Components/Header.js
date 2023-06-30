@@ -31,7 +31,10 @@ function Header({ setSearchedCard, onSearch, cardList }) {
 				alert('\n You already added this card. \n \n Commander format allows for only one copy of each unique card. \n \n Please try another card.')
 			}
 			setInput('');
-		});
+		})
+		.catch(() => {
+			alert('Not a valid Magic the Gathering card name.');
+		})
 	}
   return (
     <header className="App-header">
