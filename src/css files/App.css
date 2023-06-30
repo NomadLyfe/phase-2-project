@@ -1,5 +1,11 @@
 .App {
-  text-align: center;
+  background-color: #282634;
+  color: #DCDCDC;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .logo {
@@ -69,6 +75,12 @@ main {
   border-top: 1px #9634E4 solid;
 }
 
+nav {
+  background-color: #282634;
+  color: #DCDCDC;
+  margin-bottom: 20vh;
+}
+
 .deckwrapper {
   text-align: left;
   padding: 30px;
@@ -133,17 +145,6 @@ main {
   vertical-align: -1px;
   background-color: #FA8BFF;
   background-image: linear-gradient(45deg, #FA8BFF 20%, #2BD2FF 52%, #2BFF88 80%);
-}
-
-.loginpage {
-  background-color: #282634;
-  color: #DCDCDC;
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 .loginlogo {

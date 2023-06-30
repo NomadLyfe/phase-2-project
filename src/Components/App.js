@@ -6,6 +6,8 @@ import DeckDisplay from './DeckDisplay';
 import Login from './Login.js';
 import MyDecks from './MyDecks.js';
 import { Switch, Route } from "react-router-dom";
+import NavBar from "./NavBar";
+import DeckEditer from './DeckEditer.js';
 
 function App() {
   const [searchedCard, setSearchedCard] = useState(null);
@@ -85,20 +87,20 @@ function App() {
       setSelectedCard(correctCard[0]);
     });
   }
-  if (!user) return <Login handleSubmit={handleLogin} handleChange={trackLogin} logindata={logindata} />
-  if (!commander) return <MyDecks handleSubmit={handleNewDeck} handleLogout={handleLogout} user={user} deckList={deckList} handleSelectDeck={handleSelectDeck} />
+  //if (!user) return <Login handleSubmit={handleLogin} handleChange={trackLogin} logindata={logindata} />
+  //if (!commander) return <MyDecks handleSubmit={handleNewDeck} handleLogout={handleLogout} user={user} deckList={deckList} handleSelectDeck={handleSelectDeck} />
   return (
     <div className="App">
-      
+      <NavBar />
       <Switch>
         <Route exact path="/Login">
-
+          <Login handleSubmit={handleLogin} handleChange={trackLogin} logindata={logindata} />
         </Route>
         <Route exact path="/MyDecks">
-          
+          <MyDecks handleSubmit={handleNewDeck} handleLogout={handleLogout} user={user} deckList={deckList} handleSelectDeck={handleSelectDeck} />
         </Route>
         <Route exact path={commander}>
-          
+          <DeckEditer setSearchedCard={setSearchedCard} onSearch={onSearch} cardList={cardList} selectedCard={selectedCard} commander={commander} searchedCard={searchedCard} setCardList={setCardList} handleMouseOver={handleMouseOver} />
         </Route>
         <Route path="*">
           
@@ -106,11 +108,6 @@ function App() {
       </Switch>
       <button className='logout' onClick={handleLogout}>Log Out</button>
       <button className='mydecksbtn'>My Decks</button>
-      <Header setSearchedCard={setSearchedCard} onSearch={onSearch} cardList={cardList} />
-      <main>
-        <CardDisplay selectedCard={selectedCard} commander={commander} />
-        <DeckDisplay searchedCard={searchedCard} setSearchedCard={setSearchedCard} cardList={cardList} setCardList={setCardList} handleMouseOver={handleMouseOver} commander={commander} />
-      </main>
     </div>
   );
 }

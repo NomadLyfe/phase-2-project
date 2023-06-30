@@ -29,9 +29,7 @@ function MyDecks({ handleSubmit, handleLogout, user, deckList, handleSelectDeck 
 				</form> : null}
 			</div>
 			<h1>Archived Decks:</h1>
-			<div className='decks'>
-				{deckList.length !== 0 ? {renderedDeckList} : "You haven't made any yet!"}
-			</div>
+			<div className='decks'>{renderedDeckList}</div>
 		</div>
     
   );

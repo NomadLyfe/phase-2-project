@@ -36,9 +36,9 @@ function DeckDisplay({ searchedCard, setSearchedCard, cardList, setCardList, han
 				<h3>
 					Commander (1)
 				</h3>
-				<div>
+				{commander ? <div>
 					<img src={commander.image_uris.normal} className="deckCard" alt={commander.name} onMouseOver={handleMouseOver} />
-				</div>
+				</div> : null}
 			</div>
 			{deckCards}
     </div>
