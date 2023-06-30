@@ -1,0 +1,9 @@
+{
+	"logins": [
+		{
+			"username": "admin",
+			"password": "admin",
+			"decks": []
+		}
+	]
+}
