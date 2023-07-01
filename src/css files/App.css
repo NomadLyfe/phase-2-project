@@ -178,13 +178,15 @@ nav a.active {
 
 .loginlogo {
   padding: 100px;
-  padding-top: 20px;
+  padding-top: 16.5px;
+  padding-bottom: 150px;
   width: 33vw;
 }
 
 .newdecklogo {
   padding: 100px;
-  padding-top: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   width: 33vw;
 }
 
@@ -232,6 +234,13 @@ nav a.active {
   flex-direction: column;
 }
 
+.newdeck {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .newdeck button span {
   font-size: 50pt;
 }
@@ -250,7 +259,23 @@ nav a.active {
 }
 
 .deck {
+  text-decoration: none;
+  width: 200px;
+  height: 146px;
+  border-radius: 20px;
+  border: 1px solid #9534e487;
+  background-color: #dcdcdc20;
+  color: #DCDCDC;
   margin: 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.deck:hover {
+  background-color: #dcdcdc40;
+  cursor: pointer;
 }
 
 .deckPage {

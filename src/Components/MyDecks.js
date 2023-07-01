@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import logo from '../Images/logo-no-background.png';
 import '../css files/App.css';
 
@@ -12,15 +13,18 @@ function MyDecks({ handleSubmit, user, deckList, handleSelectDeck }) {
 		setClicked(true);
 	}
 	const renderedDeckList = deckList.map(deck => {
+		/* onClick={(e) => handleSelectDeck(e, deck)} */
+		const link = `/mydecks/${deck.name}`;
 		return (
-			<button key={deck.name} className='deck' name={deck.name} onClick={(e) => handleSelectDeck(e, deck)}>{deck.name}</button>
+			<Link exact to={link} key={deck.name} className='deck' >{deck.name}</Link>
 		)
 	})
   return (
 		<div className='deckPage'>
 			<img src={logo} className='newdecklogo' />
 			<div className='newdeck'>
-				{clicked ? null : <button className='newdeckbutton' onClick={handleClick}>Make a new deck <br /> <span>+</span> </button>}
+				<h1>Make a new deck:</h1>
+				{clicked ? null : <button className='newdeckbutton' onClick={handleClick}><span>+</span></button>}
 				{clicked ? <form onSubmit={(e) => handleSubmit(e, formData)}>
 					<label>Make a Deck Name:</label><br /><input name='name' type='text' onChange={handleChange} value={formData.name} /><br />
 					<label>Choose a Commander:</label><br /><input name='commander' type='text' onChange={handleChange} value={formData.commander} /><br />
