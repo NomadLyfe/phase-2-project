@@ -37,7 +37,7 @@
   border: solid 1px #DCDCDC;
   border-radius: 5px;
   width: 66%;
-  min-width: 158px;
+  min-width: 290px;
   display: flex;
   align-items: center;
   height: 36px;
@@ -360,11 +360,7 @@ nav a.active {
   cursor: pointer;
 }
 
-.empty {
-  height: 36px;
-  margin-left: 70px;
-  margin-right: 180px;
-  width: 66%;
-  min-width: 158px;
+.allDecks {
+  border-top: 1px solid #9634E4;
+  width: 100vw;
 }
-

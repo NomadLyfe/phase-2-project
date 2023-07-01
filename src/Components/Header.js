@@ -5,9 +5,17 @@ import '../css files/App.css';
 
 function Header({ setSearchedCard, onSearch, cardList, user }) {
 	const [input, setInput] = useState('');
+	const [filter, setFilter] = useState('');
 	const params = useParams();
 	function handleChange(e) {
 		setInput(e.target.value);
+	}
+	function handleFilterChange(e) {
+		setFilter(e.target.value);
+	}
+	function handleDeckSearch(e) {
+		e.preventDefault();
+
 	}
   function handleSearch(e) {
 		e.preventDefault()
@@ -33,9 +41,11 @@ function Header({ setSearchedCard, onSearch, cardList, user }) {
   return (
     <header className="App-header">
 			<img src={logo} className="logo" alt="logo" />
-			{user? <form onSubmit={handleSearch}>
+			{!params.id ? <form onSubmit={handleDeckSearch}>
+					<input type='text' value={filter} placeholder='Filter for a deck...' onChange={handleFilterChange} />
+			</form> : <form onSubmit={handleSearch}>
 					<input type='text' value={input} placeholder='Search cards to add...' onChange={handleChange} />
-			</form> : <div className='empty'></div>}
+			</form>}
     </header>
   );
 }

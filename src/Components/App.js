@@ -6,6 +6,7 @@ import { Switch, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import DeckEditor from './DeckEditor.js';
 import Home from './Home';
+import Register from './Register';
 
 function App() {
   const [searchedCard, setSearchedCard] = useState(null);
@@ -104,8 +105,8 @@ function App() {
     <div className="App">
       <NavBar user={user} commander={commander} handleLogout={handleLogout} setSelectedCard={setSelectedCard} setSearchedCard={setSearchedCard} setCommander={setCommander} setCardList={setCardList} />
       <Switch>
-        <Route exact path="/">
-          <Home />
+        <Route exact path="/home">
+          <Home setSearchedCard={setSearchedCard} onSearch={onSearch} cardList={cardList} user={user} />
         </Route>
         <Route exact path="/login">
           <Login handleSubmit={handleLogin} handleChange={trackLogin} logindata={logindata} user={user} />
@@ -115,6 +116,9 @@ function App() {
         </Route>
         <Route exact path="/mydecks">
           <MyDecks handleSubmit={handleNewDeck} user={user} deckList={deckList} />
+        </Route>
+        <Route path="/register">
+          <Register />
         </Route>
         <Route path="*">
           

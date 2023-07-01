@@ -1,10 +1,13 @@
 import React from "react";
+import Header from "./Header";
+import AllDecks from "./AllDecks";
 
-function Home () {    
+function Home ({ setSearchedCard, onSearch, cardList, user }) {
 	return (
-		<div>
-            hello
-        </div>
+	<div>
+    <Header setSearchedCard={setSearchedCard} onSearch={onSearch} cardList={cardList} user={user} />
+    <AllDecks />
+  </div>
 	);
 }
 
