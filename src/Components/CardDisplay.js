@@ -1,7 +1,7 @@
 import React from 'react';
 import '../css files/App.css';
 
-function CardDisplay({ selectedCard, commander }) {
+function CardDisplay({ selectedCard }) {
   return (
     <div className='cardwrapper'>
 			<div className="Card-logo" >

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import logo from '../Images/logo-no-background.png';
 import '../css files/App.css';
 
-function MyDecks({ handleSubmit, user, deckList, handleSelectDeck }) {
+function MyDecks({ handleSubmit, user, deckList }) {
 	const [formData, setFormData] = useState({owner: user, name: '', commander: ''});
 	const [clicked, setClicked] = useState(false);
 	function handleChange(e) {
@@ -13,10 +13,9 @@ function MyDecks({ handleSubmit, user, deckList, handleSelectDeck }) {
 		setClicked(true);
 	}
 	const renderedDeckList = deckList.map(deck => {
-		/* onClick={(e) => handleSelectDeck(e, deck)} */
 		const link = `/mydecks/${deck.name}`;
 		return (
-			<Link exact to={link} key={deck.name} className='deck' >{deck.name}</Link>
+			<Link exact to={link} key={deck.name} className='deck'>{deck.name}</Link>
 		)
 	})
   return (

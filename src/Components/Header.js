@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import logo from '../Images/logo-no-background.png';
 import '../css files/App.css';
 
-function Header({ setSearchedCard, onSearch, cardList }) {
+function Header({ setSearchedCard, onSearch, cardList, user }) {
 	const [input, setInput] = useState('');
 	function handleChange(e) {
 		setInput(e.target.value);
@@ -39,9 +39,9 @@ function Header({ setSearchedCard, onSearch, cardList }) {
   return (
     <header className="App-header">
 			<img src={logo} className="logo" alt="logo" />
-			<form onSubmit={handleSearch}>
+			{user? <form onSubmit={handleSearch}>
 					<input type='text' value={input} placeholder='Search cards to add...' onChange={handleChange} />
-			</form>
+			</form> : <div className='empty'></div>}
     </header>
   );
 }

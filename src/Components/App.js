@@ -75,19 +75,9 @@ function App() {
     setUser(null);
     setSearchedCard(null);
   }
-  function handleSelectDeck (e, deck) {
-    e.preventDefault();
-    fetch(`https://api.scryfall.com/cards/search?q=${deck.commander}&unique=cards`)
-    .then(res => res.json())
-    .then(card => {
-      const correctCard = card.data.filter(el => el.name === deck.commander);
-      setCommander(correctCard[0]);
-      setSelectedCard(correctCard[0]);
-    });
-  }
   return (
     <div className="App">
-      <NavBar user={user} commander={commander} handleLogout={handleLogout} />
+      <NavBar user={user} commander={commander} handleLogout={handleLogout} setSelectedCard={setSelectedCard} setSearchedCard={setSearchedCard} setCommander={setCommander} setCardList={setCardList} />
       <Switch>
         <Route exact path="/">
           <Home />
@@ -96,10 +86,10 @@ function App() {
           <Login handleSubmit={handleLogin} handleChange={trackLogin} logindata={logindata} user={user} />
         </Route>
         <Route exact path="/mydecks/:id">
-          <DeckEditor setSearchedCard={setSearchedCard} onSearch={onSearch} cardList={cardList} selectedCard={selectedCard} commander={commander} searchedCard={searchedCard} setCardList={setCardList} handleMouseOver={handleMouseOver} />
+          <DeckEditor setSearchedCard={setSearchedCard} onSearch={onSearch} cardList={cardList} selectedCard={selectedCard} commander={commander} searchedCard={searchedCard} setCardList={setCardList} handleMouseOver={handleMouseOver} setSelectedCard={setSelectedCard} setCommander={setCommander} user={user} />
         </Route>
         <Route exact path="/mydecks">
-          <MyDecks handleSubmit={handleNewDeck} user={user} deckList={deckList} handleSelectDeck={handleSelectDeck} />
+          <MyDecks handleSubmit={handleNewDeck} user={user} deckList={deckList} />
         </Route>
         <Route path="*">
           
