@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import logo from '../Images/logo-no-background.png';
 import '../css files/App.css';
 
-function MyDecks({ handleSubmit, handleLogout, user, deckList, handleSelectDeck }) {
+function MyDecks({ handleSubmit, user, deckList, handleSelectDeck }) {
 	const [formData, setFormData] = useState({owner: user, name: '', commander: ''});
 	const [clicked, setClicked] = useState(false);
 	function handleChange(e) {
@@ -13,12 +13,11 @@ function MyDecks({ handleSubmit, handleLogout, user, deckList, handleSelectDeck 
 	}
 	const renderedDeckList = deckList.map(deck => {
 		return (
-			<button key={deck.name} className='decks' name={deck.name} onClick={(e) => handleSelectDeck(e, deck)}>{deck.name}</button>
+			<button key={deck.name} className='deck' name={deck.name} onClick={(e) => handleSelectDeck(e, deck)}>{deck.name}</button>
 		)
 	})
   return (
 		<div className='deckPage'>
-			<button className='logout' onClick={handleLogout}>Log Out</button>
 			<img src={logo} className='newdecklogo' />
 			<div className='newdeck'>
 				{clicked ? null : <button className='newdeckbutton' onClick={handleClick}>Make a new deck <br /> <span>+</span> </button>}

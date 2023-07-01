@@ -2,11 +2,11 @@ import React from 'react';
 import logo from '../Images/logo-no-background.png';
 import '../css files/App.css';
 
-function Login({ handleSubmit, handleChange, logindata }) {
+function Login({ handleSubmit, handleChange, logindata, user }) {
   return (
     <div className='loginpage'>
 			<img src={logo} alt='logo' className='loginlogo' />
-			<form onSubmit={handleSubmit} className='loginform'>
+			{!user ? <form onSubmit={handleSubmit} className='loginform'>
 				<label id='name'>Username</label>
 				<input type='text' onChange={handleChange} value={logindata.name} />
 				<br />
@@ -14,7 +14,7 @@ function Login({ handleSubmit, handleChange, logindata }) {
 				<input type='password' onChange={handleChange} value={logindata.password} />
 				<br />
 				<button>Log In</button>
-			</form>
+			</form>: <p>Congratulations! You are logged in!</p>}
     </div>
   );
 }

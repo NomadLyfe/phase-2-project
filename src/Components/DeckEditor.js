@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Header from './Header.js'
 import '../css files/App.css';
-import CardDisplay from './CardDisplay';
-import DeckDisplay from './DeckDisplay';
+import CardDisplay from './CardDisplay.js';
+import DeckDisplay from './DeckDisplay.js';
 import { Switch, Route } from "react-router-dom";
 
-function DeckEditer ({ searchedCard, setSearchedCard, onSearch, cardList, selectedCard, setCardList, handleMouseOver, commander }) {
+function DeckEditor ({ searchedCard, setSearchedCard, onSearch, cardList, selectedCard, setCardList, handleMouseOver, commander }) {
   return (
 		<div>
 			<Header setSearchedCard={setSearchedCard} onSearch={onSearch} cardList={cardList} />
@@ -17,4 +17,4 @@ function DeckEditer ({ searchedCard, setSearchedCard, onSearch, cardList, select
   )
 }
 
-export default DeckEditer;
+export default DeckEditor;

@@ -1,19 +1,15 @@
 import React from "react";
+import { NavLink, Link } from "react-router-dom";
 
-function NavBar({ onChangePage}) {
-    
-    function handleLinkClick(e) {
-        e.preventDefault()
-        onChangePage(e.target.pathname)
-    }
-    
-    return (
-        <nav>
-            <a onClick={handleLinkClick} href="/">Log In</a>
-            <a onClick={handleLinkClick} href="/about">My Deck</a>
-            <a onClick={handleLinkClick} href="/projects">Log Out</a>
-        </nav>
-    );
+function NavBar({ user, commander, handleLogout }) {
+	return (
+		<nav>
+			<NavLink exact to="/">Home</NavLink>
+			{!user || !commander ? <NavLink exact to="/login">Log In</NavLink> : null}
+			{user && !commander ? <NavLink exact to="/mydecks">My Decks</NavLink> : null}
+			{user ? <Link exact to="/login" onClick={handleLogout}>Log Out</Link> : null}
+		</nav>
+	);
 }
 
 export default NavBar;

@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-x: hidden;
 }
 
 .logo {
@@ -78,7 +79,35 @@ main {
 nav {
   background-color: #282634;
   color: #DCDCDC;
-  margin-bottom: 20vh;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  display: flex;
+}
+
+nav a {
+  text-decoration: none;
+  border-radius: 10px;
+  border: 1px solid #9534e487;
+  background-color: #dcdcdc20;
+  color: #dcdcdc;
+  width: 80px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+nav a:hover {
+  background-color: #dcdcdc40;
+  color: #dcdcdc;
+  cursor: pointer;
+}
+
+nav a.active {
+  background-color: #DCDCDC;
+  color: #282634;
+  cursor: default;
 }
 
 .deckwrapper {
@@ -148,14 +177,15 @@ nav {
 }
 
 .loginlogo {
-  margin-top: -150px;
   padding: 100px;
-  width: 40vw;
+  padding-top: 20px;
+  width: 33vw;
 }
 
 .newdecklogo {
   padding: 100px;
-  width: 40vw;
+  padding-top: 20px;
+  width: 33vw;
 }
 
 .loginform {
@@ -165,12 +195,10 @@ nav {
   justify-content: center;
 }
 
-.newdeck {
-  background-color: #282634;
-  color: #DCDCDC;
-  height: 100vh;
-  width: 100vw;
+.loginpage p {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 
@@ -195,12 +223,6 @@ nav {
   color: #DCDCDC;
 }
 
-.newdeck img {
-  margin-top: -150px;
-  padding: 100px;
-  width: 40vw;
-}
-
 .newdeck form {
   display: flex;
   width: 200px;
@@ -216,6 +238,7 @@ nav {
 
 .newdeck button:hover {
   background-color: #dcdcdc40;
+  cursor: pointer;
 }
 
 .decks {
@@ -223,9 +246,11 @@ nav {
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  margin-bottom: 20px;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-bottom: 50px;
+}
+
+.deck {
+  margin: 0 5px;
 }
 
 .deckPage {
@@ -250,10 +275,12 @@ nav {
 
 .decks button:hover {
   background-color: #dcdcdc40;
+  cursor: pointer;
 }
 
 .logout:hover {
   background-color: #dcdcdc40;
+  cursor: pointer;
 }
 
 .mydecksbtn {
@@ -270,4 +297,23 @@ nav {
 
 .mydecksbtn:hover {
   background-color: #dcdcdc40;
+  cursor: pointer;
+}
+
+.loginform button {
+  text-decoration: none;
+  border-radius: 10px;
+  border: 1px solid #9534e487;
+  background-color: #dcdcdc20;
+  color: #dcdcdc;
+  width: 60px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginform button:hover {
+  background-color: #dcdcdc40;
+  cursor: pointer;
 }

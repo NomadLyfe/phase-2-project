@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
-import Header from './Header.js'
 import '../css files/App.css';
-import CardDisplay from './CardDisplay';
-import DeckDisplay from './DeckDisplay';
 import Login from './Login.js';
 import MyDecks from './MyDecks.js';
 import { Switch, Route } from "react-router-dom";
 import NavBar from "./NavBar";
-import DeckEditer from './DeckEditer.js';
+import DeckEditor from './DeckEditor.js';
+import Home from './Home';
 
 function App() {
   const [searchedCard, setSearchedCard] = useState(null);
   const [cardList, setCardList] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
-  const [logindata, setLogindata] = useState({ name: '', password: '' });
+  const [logindata, setLogindata] = useState({name: '', password: ''});
   const [commander, setCommander] = useState(null);
   const [user, setUser] = useState(null);
   const [deckList, setDeckList] = useState([]);
@@ -40,12 +38,12 @@ function App() {
         setLogindata({ name: '', password: '' });
         alert('\nIncorrect username or password!');
       }
-    });
+    })
+    .catch(() => alert('\nIncorrect username or password!'));
     fetch(`http://localhost:3001/decks`)
     .then(res => res.json())
     .then(decks => {
       const decksOwnedByCurrentUser = decks.filter(deck => deck.owner === logindata.name);
-      console.log(decksOwnedByCurrentUser)
       setDeckList(decksOwnedByCurrentUser);
     })
   }
@@ -87,27 +85,26 @@ function App() {
       setSelectedCard(correctCard[0]);
     });
   }
-  //if (!user) return <Login handleSubmit={handleLogin} handleChange={trackLogin} logindata={logindata} />
-  //if (!commander) return <MyDecks handleSubmit={handleNewDeck} handleLogout={handleLogout} user={user} deckList={deckList} handleSelectDeck={handleSelectDeck} />
   return (
     <div className="App">
-      <NavBar />
+      <NavBar user={user} commander={commander} handleLogout={handleLogout} />
       <Switch>
-        <Route exact path="/Login">
-          <Login handleSubmit={handleLogin} handleChange={trackLogin} logindata={logindata} />
+        <Route exact path="/">
+          <Home />
         </Route>
-        <Route exact path="/MyDecks">
-          <MyDecks handleSubmit={handleNewDeck} handleLogout={handleLogout} user={user} deckList={deckList} handleSelectDeck={handleSelectDeck} />
+        <Route exact path="/login">
+          <Login handleSubmit={handleLogin} handleChange={trackLogin} logindata={logindata} user={user} />
         </Route>
-        <Route exact path={commander}>
-          <DeckEditer setSearchedCard={setSearchedCard} onSearch={onSearch} cardList={cardList} selectedCard={selectedCard} commander={commander} searchedCard={searchedCard} setCardList={setCardList} handleMouseOver={handleMouseOver} />
+        <Route exact path="/mydecks/:id">
+          <DeckEditor setSearchedCard={setSearchedCard} onSearch={onSearch} cardList={cardList} selectedCard={selectedCard} commander={commander} searchedCard={searchedCard} setCardList={setCardList} handleMouseOver={handleMouseOver} />
+        </Route>
+        <Route exact path="/mydecks">
+          <MyDecks handleSubmit={handleNewDeck} user={user} deckList={deckList} handleSelectDeck={handleSelectDeck} />
         </Route>
         <Route path="*">
           
         </Route>
       </Switch>
-      <button className='logout' onClick={handleLogout}>Log Out</button>
-      <button className='mydecksbtn'>My Decks</button>
     </div>
   );
 }
