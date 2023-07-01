@@ -15,9 +15,21 @@ function App() {
   const [commander, setCommander] = useState(null);
   const [user, setUser] = useState(null);
   const [deckList, setDeckList] = useState([]);
-  function onSearch(card) {
-    setSelectedCard(card)
+
+  function onSearch(card, deckName) {
+    setSelectedCard(card);
+    const removedNullElementCardList = cardList.filter(card => !!card)
+    fetch(`http://localhost:3001/decks/${deckName.id}`, {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({cards: [...removedNullElementCardList, card]})
+    })
+    .then(res => res.json())
+    .then(data => {console.log(data)});
   }
+
   function handleMouseOver(e) {
     fetch(`https://api.scryfall.com/cards/search?q=${e.target.alt}&unique=cards`)
     .then(res => res.json())
@@ -26,6 +38,7 @@ function App() {
       setSelectedCard(correctCard[0]);
     });
   }
+
   function handleLogin (e) {
     e.preventDefault();
     fetch(`http://localhost:3001/users/${logindata.name}`)
@@ -47,34 +60,46 @@ function App() {
       setDeckList(decksOwnedByCurrentUser);
     })
   }
+
   function trackLogin (e) {
     setLogindata({...logindata, [e.target.previousSibling.id]: e.target.value});
   }
+
   function handleNewDeck (e, formData) {
     e.preventDefault();
     fetch(`https://api.scryfall.com/cards/search?q=${formData.commander}&unique=cards`)
     .then(res => res.json())
     .then(card => {
-      const correctCard = card.data.filter(el => el.name === formData.commander);
-      setCommander(correctCard[0]);
-      setSelectedCard(correctCard[0]);
-    });
-    fetch("http://localhost:3001/decks/", {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(formData)
+      const correctCard = card.data.filter(el => el.name.toLowerCase() === formData.commander.toLowerCase());
+      if (correctCard[0].type_line.contains('Legendary Creature')) {
+        setCommander(correctCard[0]);
+        setSelectedCard(correctCard[0]);
+        setDeckList([...deckList, formData]);
+        fetch("http://localhost:3001/decks/", {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+        })
+        .then(res => res.json())
+        .then(data => console.log(data));
+      } else {
+        alert("\nThat isn't a legal Commander!")
+      }
     })
-    .then(res => res.json())
-    .then(data => console.log(data));
+    .catch(() => {
+      alert("\nThat isn't a legal Commander!")
+    })
   }
+
   function handleLogout () {
     setCommander(null);
     setSelectedCard(null);
     setUser(null);
     setSearchedCard(null);
   }
+
   return (
     <div className="App">
       <NavBar user={user} commander={commander} handleLogout={handleLogout} setSelectedCard={setSelectedCard} setSearchedCard={setSearchedCard} setCommander={setCommander} setCardList={setCardList} />

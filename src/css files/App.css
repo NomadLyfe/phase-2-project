@@ -10,7 +10,7 @@
 }
 
 .logo {
-  height: 10dvh;
+  height: 93px;
   pointer-events: none;
   margin-top: -65px;
 }
@@ -133,6 +133,7 @@ nav a.active {
   border-bottom: none;
   background-color: #282634;
   color: #DCDCDC;
+  text-align: center;
 }
 
 .Card-logo {
@@ -263,17 +264,19 @@ nav a.active {
 
 .deck {
   text-decoration: none;
-  width: 200px;
+  width: 150px;
   height: 146px;
   border-radius: 20px;
   border: 1px solid #9534e487;
   background-color: #dcdcdc20;
   color: #DCDCDC;
-  margin: 0 5px;
+  margin: 0 30px 0 -0.5px;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 .deck:hover {
@@ -292,13 +295,24 @@ nav a.active {
   justify-content: center;
 }
 
-.decks button {
-  width: 200px;
-  height: 146px;
+.delAndLink {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.deletebtn {
+  width: 50px;
+  height: 147px;
   border-radius: 20px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
   border: 1px solid #9534e487;
   background-color: #dcdcdc20;
   color: #DCDCDC;
+}
+
+.deck span {
 }
 
 .decks button:hover {
@@ -353,3 +367,4 @@ nav a.active {
   width: 66%;
   min-width: 158px;
 }
+

@@ -17,6 +17,7 @@ function DeckEditor ({ searchedCard, setSearchedCard, onSearch, cardList, select
       	const correctCard = card.data.filter(el => el.name === deck.commander);
       	setCommander(correctCard[0]);
       	setSelectedCard(correctCard[0]);
+				setCardList(deck.cards);
     	});
 		})
 }, [id])
