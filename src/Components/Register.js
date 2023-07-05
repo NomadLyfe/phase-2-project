@@ -7,8 +7,10 @@ function Register() {
 	useEffect(() => {
 		fetch('http://localhost:3001/users')
 		.then(res => res.json())
-		.then(users => setUsers(users));
-	}, [users])
+		.then(userList => {
+			setUsers(userList);
+		})
+	}, [])
 	
 	function handleChange (e) {
 		setRegisterData({ ...registerData, [e.target.name]: e.target.value});
@@ -25,9 +27,9 @@ function Register() {
 				body: JSON.stringify({ "name": registerData.name, "password": registerData.password })
 			})
 			.then(res => res.json())
-			.then(data => {
-				console.log(data)
+			.then(() => {
 				setRegisterData({ name: '', password: '', confirmpassword: '' });
+				alert('\nCongratulations, You have successfully registered an account! Please go to the "Log In" page to log in.');
 			});
 		} else if (registerData.password !== registerData.confirmpassword) {
 			alert("\nYour passwords did not match!")

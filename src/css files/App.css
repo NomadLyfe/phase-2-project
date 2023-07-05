@@ -9,16 +9,29 @@
   overflow-x: hidden;
 }
 
-.logo {
-  height: 93px;
-  pointer-events: none;
-  margin-top: -65px;
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+::-webkit-scrollbar-track {
+  background: #28263400;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 1px solid #9634E4;
+  border-radius: 10px;
+  background: #dcdcdc
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #dcdcdc7e;
+}
+
+.logo {
+  height: 100px;
+  margin-top: -4.5vh;
+  left: 0;
+  margin-right: 8vw;
 }
 
 .App-header {
@@ -27,22 +40,33 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  margin-top: -3vh;
+  margin-top: -5vh;
+  margin-left: 85px;
+  margin-bottom: 10px;
+  
 }
 
 .App-header form{
   border: solid 1px #DCDCDC;
   border-radius: 5px;
+  width: 50%;
+  min-width: 290px;
+  display: flex;
+  align-items: center;
+  height: 36px;
+  margin-top: 30px;
+}
+
+.empty {
   width: 66%;
   min-width: 290px;
   display: flex;
   align-items: center;
   height: 36px;
   margin-left: 70px;
-  margin-right: 180px;
+  margin-right: 180px;  
 }
 
 .App-header form input {
@@ -62,15 +86,6 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 main {
   display: flex;
   justify-content: center;
@@ -85,6 +100,7 @@ nav {
   margin-top: 10px;
   display: flex;
   z-index: 2;
+  height: auto;
 }
 
 nav a {
@@ -149,15 +165,61 @@ nav a.active {
 
 .deckCard {
   height: 240px;
-  overflow-x: auto;
   position: relative;
   top: 0;
+  border-radius: 9px;
+}
+
+.cardDeleteBtn {
+  margin-left: -54.16px;
+  transform: translate(-110px, -217px);
+  opacity: 0;
+  transition: opacity 0.5s;
+  width: 54.16px;
+  height: 20.17px;
+  border-radius: 20px;
+  border: 1px solid #9534e487;
+  background-color: #282634;
+  color: #DCDCDC;
+}
+
+.cardQuantBtn {
+  margin-left: -33.41px;
+  transform: translate(-9px, -217px);
+  opacity: 0;
+  transition: opacity 0.5s;
+  width: 33.41px;
+  height: 20.17px;
+  border-radius: 20px;
+  border: 1px solid #9534e487;
+  background-color: #282634;
+  color: #DCDCDC;
+}
+
+.cardQuantBtn:hover {
+  background-color: #625d7c;
+  cursor: pointer;
+}
+
+.cardDeleteBtn:hover {
+  background-color: #625d7c;
+  cursor: pointer;
+}
+
+.deckCardContainer {
+  position: relative;
+  top: 0px;
+  height: 240px;
   transition: top ease 0.5s;
   border-radius: 9px;
 }
 
-.deckCard:hover {
+.deckCardContainer:hover {
   top: -10px;
+}
+
+.deckCardContainer:hover button {
+  opacity: 1;
 }
 
 .noCards {
@@ -188,9 +250,7 @@ nav a.active {
 }
 
 .newdecklogo {
-  padding: 100px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding: 15px;
   width: 33vw;
 }
 
@@ -201,11 +261,24 @@ nav a.active {
   justify-content: center;
 }
 
+.loginpage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .loginpage p {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  text-align: center;
+  border: 1px solid #9634E4;
+  border-radius: 20px;
+  width: 400px;
+  height: 146px;
+  box-shadow: 7px 7px 10px 2px rgba(0,0,0,.8);
+  color: #DCDCDC;
 }
 
 .logout {
@@ -260,6 +333,12 @@ nav a.active {
   justify-content: center;
   flex-direction: row;
   margin-bottom: 50px;
+  flex-wrap: wrap;
+  background-color: #282634;
+  padding-bottom: 10vh;
+}
+.delAndLink {
+  margin: 30px 20px;
 }
 
 .deck {
@@ -270,7 +349,7 @@ nav a.active {
   border: 1px solid #9534e487;
   background-color: #dcdcdc20;
   color: #DCDCDC;
-  margin: 0 30px 0 -0.5px;
+  margin: 0 0 0 -1px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -287,12 +366,11 @@ nav a.active {
 .deckPage {
   background-color: #282634;
   color: #DCDCDC;
-  height: 100vh;
+  height: calc(100vh - 70px);
   width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 .delAndLink {
@@ -303,7 +381,7 @@ nav a.active {
 
 .deletebtn {
   width: 50px;
-  height: 147px;
+  height: 148px;
   border-radius: 20px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
@@ -312,12 +390,10 @@ nav a.active {
   color: #DCDCDC;
 }
 
-.deck span {
-}
-
 .decks button:hover {
   background-color: #dcdcdc40;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .logout:hover {
@@ -363,4 +439,36 @@ nav a.active {
 .allDecks {
   border-top: 1px solid #9634E4;
   width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
 }
+
+.allDecks div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.allDecks div a {
+  text-decoration: none;
+  width: 200px;
+  height: 146px;
+  border-radius: 20px;
+  border: 1px solid #9534e487;
+  background-color: #dcdcdc20;
+  color: #DCDCDC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 10px;
+}
+
+.allDecks div a:hover {
+  background-color: #dcdcdc40;
+  color: #dcdcdc;
+  cursor: pointer;
+}
+
+

@@ -10,11 +10,11 @@ function NavBar({ user, commander, handleLogout, setSelectedCard, setSearchedCar
 	}
 	return (
 		<nav>
-			<NavLink exact to="/home">Home</NavLink>
-			{!user || !commander ? <NavLink exact to="/login">Log In</NavLink> : null}
-			{user ? <NavLink exact to="/mydecks" onClick={handeleGoBack}>My Decks</NavLink> : null}
-			{user ? <Link exact to="/login" onClick={handleLogout}>Log Out</Link> : null}
-			{!user ? <NavLink exact to="/register">Register</NavLink> : null}
+			<NavLink to="/home">Home</NavLink>
+			{!user ? <NavLink to="/login">Log In</NavLink> : null}
+			{user ? <NavLink exact to="/decks" onClick={handeleGoBack}>My Decks</NavLink> : null}
+			{user ? <Link to="/login" onClick={handleLogout}>Log Out</Link> : null}
+			{!user ? <NavLink to="/register">Register</NavLink> : null}
 		</nav>
 	);
 }
