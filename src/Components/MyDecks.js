@@ -4,7 +4,7 @@ import logo from '../Images/logo-no-background.png';
 import '../css files/App.css';
 
 function MyDecks({ handleSubmit, user, deckList, setDeckList, decks, setDecks }) {
-	const [formData, setFormData] = useState({owner: user, name: '', commander: '', cards: []});
+	const [formData, setFormData] = useState({owner: user, id: '', commander: '', cards: []});
 	const [clicked, setClicked] = useState(false);
 	function handleDeleteDeck(e) {
 		fetch(`http://localhost:3001/decks/${e.target.name}`, {
@@ -15,8 +15,8 @@ function MyDecks({ handleSubmit, user, deckList, setDeckList, decks, setDecks })
 		})
 		.then(res => res.json())
 		.then(() => {
-			const newDeckList = deckList.filter(deck => deck.name !== e.target.name);
-			const newDecks = decks.filter(deck => deck.name !== e.target.name);
+			const newDeckList = deckList.filter(deck => deck.id !== e.target.name);
+			const newDecks = decks.filter(deck => deck.id !== e.target.name);
 			setDeckList([...newDeckList]);
 			setDecks([...newDecks]);
 		});
@@ -28,11 +28,11 @@ function MyDecks({ handleSubmit, user, deckList, setDeckList, decks, setDecks })
 		setClicked(!clicked);
 	}
 	const renderedDeckList = deckList.map(deck => {
-		const link = `/decks/${deck.name}`;
+		const link = `/decks/${deck.id}`;
 		return (
-			<div className='delAndLink' key={deck.name}>
-				<button className='deletebtn' name={deck.name} onClick={handleDeleteDeck}>Delete</button>
-				<Link to={link} className='deck'><span>{deck.name}</span></Link>
+			<div className='delAndLink' key={deck.id}>
+				<button className='deletebtn' name={deck.id} onClick={handleDeleteDeck}>Delete</button>
+				<Link to={link} className='deck'><span>{deck.id}</span></Link>
 			</div>
 		)
 	})
@@ -43,7 +43,7 @@ function MyDecks({ handleSubmit, user, deckList, setDeckList, decks, setDecks })
 				<h1>Make a new deck:</h1><br />
 				{clicked ? null : <button className='newdeckbutton' onClick={handleClick}><span>+</span></button>}
 				{clicked ? <form onSubmit={(e) => handleSubmit(e, formData, setFormData, setClicked, clicked)}>
-					<label>Deck Name:</label><br /><input name='name' type='text' onChange={handleChange} value={formData.name} /><br />
+					<label>Deck Name:</label><br /><input name='id' type='text' onChange={handleChange} value={formData.id} /><br />
 					<label>Commander:</label><br /><input name='commander' type='text' onChange={handleChange} value={formData.commander} /><br />
 					<button>Submit</button><button onClick={handleClick}>Cancel</button> <br />
 				</form> : null}

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import logo from '../Images/logo-no-background.png';
 
 function Register() {
-	const [registerData, setRegisterData] = useState({ name: '', password: '', confirmpassword: '' })
+	const [registerData, setRegisterData] = useState({ id: '', password: '', confirmpassword: '' })
 	const [users, setUsers] = useState(null)
 	useEffect(() => {
-		fetch('http://localhost:3001/users')
+		fetch('https://lotus-forge-db.onrender.com/users')
 		.then(res => res.json())
 		.then(userList => {
 			setUsers(userList);
@@ -17,18 +17,18 @@ function Register() {
 	}
 	function handleSubmit (e) {
 		e.preventDefault();
-		const check = users.filter(user => user.name === registerData.name);
+		const check = users.filter(user => user.id === registerData.id);
 		if (check.length === 0 && registerData.password === registerData.confirmpassword) {
-			fetch('http://localhost:3001/users', {
+			fetch('https://lotus-forge-db.onrender.com/users', {
 				method: 'POST',
 				headers: {
 					"Content-Type": "application/json"
 				},
-				body: JSON.stringify({ "name": registerData.name, "password": registerData.password })
+				body: JSON.stringify({ "id": registerData.id, "password": registerData.password })
 			})
 			.then(res => res.json())
 			.then(() => {
-				setRegisterData({ name: '', password: '', confirmpassword: '' });
+				setRegisterData({ id: '', password: '', confirmpassword: '' });
 				alert('\nCongratulations, You have successfully registered an account! Please go to the "Log In" page to log in.');
 			});
 		} else if (registerData.password !== registerData.confirmpassword) {
@@ -42,7 +42,7 @@ function Register() {
       <img src={logo} alt='logo' className='loginlogo' />
 			<form onSubmit={handleSubmit} className='loginform'>
 				<label id='name'>Username</label>
-				<input type='text' name="name" onChange={handleChange} value={registerData.name} />
+				<input type='text' name="id" onChange={handleChange} value={registerData.id} />
 				<br />
 				<label id='password'>Make a password:</label>
 				<input type='password' name="password" onChange={handleChange} value={registerData.password} />

@@ -5,10 +5,10 @@ function AllDecks ({ decks }) {
 	let renderedDecks = null;
 	if (decks) {
 		renderedDecks = decks.map(deck => {
-			const link = `/decks/${deck.name}`;
+			const link = `/decks/${deck.id}`;
 			return (
 				<div key={deck.name}>
-					<Link to={link} className='alldeck'><span>{deck.name}</span></Link>
+					<Link to={link} className='alldeck'><span>{deck.id}</span></Link>
 				</div>
 			)
 		})

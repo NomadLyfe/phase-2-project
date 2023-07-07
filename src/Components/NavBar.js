@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 
-function NavBar({ user, commander, handleLogout, setSelectedCard, setSearchedCard, setCommander, setCardList }) {
+function NavBar({ user, handleLogout, setSelectedCard, setSearchedCard, setCommander, setCardList }) {
 	function handeleGoBack () {
 		setCommander(null);
 		setSearchedCard(null);

@@ -9,7 +9,7 @@ function DeckEditor ({ searchedCard, setSearchedCard, onSearch, cardList, select
 	const params = useParams();
 	const [owner, setOwner] = useState('');
 	useEffect(() => {
-		fetch(`http://localhost:3001/decks/${params.id}`)
+		fetch(`https://lotus-forge-db.onrender.com/decks/${params.id}`)
 		.then(r => r.json())
 		.then(deck => {
 			fetch(`https://api.scryfall.com/cards/search?q=${deck.commander}&unique=cards`)

@@ -7,8 +7,8 @@ function Login({ handleSubmit, handleChange, logindata, user }) {
     <div className='loginpage'>
 			<img src={logo} alt='logo' className='loginlogo' />
 			{!user ? <form onSubmit={handleSubmit} className='loginform'>
-				<label id='name'>Username</label>
-				<input type='text' onChange={handleChange} value={logindata.name} />
+				<label id='id'>Username</label>
+				<input type='text' onChange={handleChange} value={logindata.id} />
 				<br />
 				<label id='password'>Password</label>
 				<input type='password' onChange={handleChange} value={logindata.password} />

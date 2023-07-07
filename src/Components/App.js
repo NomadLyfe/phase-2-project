@@ -12,7 +12,7 @@ function App() {
   const [searchedCard, setSearchedCard] = useState(null);
   const [cardList, setCardList] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
-  const [logindata, setLogindata] = useState({name: '', password: ''});
+  const [logindata, setLogindata] = useState({id: '', password: ''});
   const [commander, setCommander] = useState(null);
   const [user, setUser] = useState(null);
   const [deckList, setDeckList] = useState([]);
@@ -20,7 +20,7 @@ function App() {
 	const [filter, setFilter] = useState('');
 	
   useEffect(() => {
-		fetch("http://localhost:3001/decks")
+		fetch("https://lotus-forge-db.onrender.com/decks")
 		.then(res => res.json())
 		.then(decks => setDecks(decks))
 	}, []);
@@ -28,7 +28,7 @@ function App() {
   function onSearch(card, deckName) {
     setSelectedCard(card);
     const removedNullElementCardList = cardList.filter(card => !!card)
-    fetch(`http://localhost:3001/decks/${deckName.id}`, {
+    fetch(`https://lotus-forge-db.onrender.com/decks/${deckName.id}`, {
       method: 'PATCH',
       headers: {
         "Content-Type": "application/json"
@@ -49,22 +49,22 @@ function App() {
 
   function handleLogin (e) {
     e.preventDefault();
-    fetch(`http://localhost:3001/users/${logindata.name}`)
+    fetch(`https://lotus-forge-db.onrender.com/users/${logindata.id}`)
     .then(res => res.json())
     .then(loginInfo => {
       if (loginInfo.password === logindata.password) {
-        setUser(loginInfo.name);
-        setLogindata({ name: '', password: '' });
+        setUser(loginInfo.id);
+        setLogindata({ id: '', password: '' });
       } else {
-        setLogindata({ name: '', password: '' });
+        setLogindata({ id: '', password: '' });
         alert('\nIncorrect username or password!');
       }
     })
     .catch(() => alert('\nIncorrect username or password!'));
-    fetch(`http://localhost:3001/decks`)
+    fetch(`https://lotus-forge-db.onrender.com/decks`)
     .then(res => res.json())
     .then(decks => {
-      const decksOwnedByCurrentUser = decks.filter(deck => deck.owner === logindata.name);
+      const decksOwnedByCurrentUser = decks.filter(deck => deck.owner === logindata.id);
       setDeckList(decksOwnedByCurrentUser);
     })
   }
@@ -85,7 +85,7 @@ function App() {
           setSelectedCard(correctCard[0]);
           setDeckList([...deckList, formData]);
           setDecks([...decks, formData]);
-          fetch("http://localhost:3001/decks/", {
+          fetch("https://lotus-forge-db.onrender.com/decks/", {
           method: 'POST',
           headers: {
             "Content-Type": "application/json"
@@ -93,7 +93,7 @@ function App() {
           body: JSON.stringify({...formData, commander: correctCard[0].name})
           })
           .then(res => res.json());
-          setFormData({owner: user, name: '', commander: '', cards: []});
+          setFormData({owner: user, id: '', commander: '', cards: []});
           setClicked(!clicked);
         } else {
           alert("\nThat isn't a legal Commander!")
@@ -126,7 +126,7 @@ function App() {
     if (cardToBeRemovedIndex >= 0) {
       cardList.splice(cardToBeRemovedIndex, 1);
     }
-    fetch(`http://localhost:3001/decks/${params.id}`, {
+    fetch(`https://lotus-forge-db.onrender.com/decks/${params.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json"
@@ -141,7 +141,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar user={user} commander={commander} handleLogout={handleLogout} setSelectedCard={setSelectedCard} setSearchedCard={setSearchedCard} setCommander={setCommander} setCardList={setCardList} />
+      <NavBar user={user} handleLogout={handleLogout} setSelectedCard={setSelectedCard} setSearchedCard={setSearchedCard} setCommander={setCommander} setCardList={setCardList} />
       <Switch>
         <Route exact path="/home">
           <Home setSearchedCard={setSearchedCard} onSearch={onSearch} cardList={cardList} user={user} decks={decks} />

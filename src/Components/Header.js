@@ -9,7 +9,7 @@ function Header({ setSearchedCard, onSearch, cardList, user, decks, handleFilter
 
 	useEffect(() => {
 		if (decks) {
-			const currentDeck = decks.find(deck => deck.name === params.id);
+			const currentDeck = decks.find(deck => deck.id === params.id);
 			setOwner(currentDeck.owner);
 		}
 	}, [params.id])
