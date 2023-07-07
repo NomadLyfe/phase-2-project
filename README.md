@@ -12,3 +12,7 @@ Lotus Forge is a single page application that allows a user to create an account
 
 Users, with or without accounts, are able to look at everyone's decks that have been made on the home page. If you are not logged on, or are looking at somone's else's deck, you will not be able to modify that deck. This gives all users to be able to pull ideas and in a way collaborate with the community at large.
 
+## Sample GIF of Application
+
+![Lotus Forge Demo]()
+
