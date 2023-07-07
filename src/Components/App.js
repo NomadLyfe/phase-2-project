@@ -78,7 +78,7 @@ function App() {
     .then(res => res.json())
     .then(card => {
       const correctCard = card.data.filter(el => el.name.toLowerCase() === formData.commander.toLowerCase());
-      const checkForRepeatDeckName = decks.find(deck => formData.name === deck.name);
+      const checkForRepeatDeckName = decks.find(deck => formData.id === deck.id);
       if (!checkForRepeatDeckName) {
         if (correctCard[0].type_line.includes('Legendary') && correctCard[0].type_line.includes('Creature')) {
           setCommander(correctCard[0]);

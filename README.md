@@ -14,7 +14,7 @@ Users, with or without accounts, are able to look at everyone's decks that have 
 
 ## Sample GIF of Application
 
-![Lotus Forge Demo]()
+![Lotus Forge Demo](./src/Images/phase2gif.gif)
 
 ## Contributing
 
@@ -25,6 +25,8 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 I plan on eventually adding the capability to show multiple cards when searching for new cards to add to your decks. 
 
 Also I am planning on adding a search functionality that does not just rely on knowing the name of a card.
+
+Additionally, I plan on adding the filter functionality on the home page to filter through everyone's decks.
 
 ## License
 
