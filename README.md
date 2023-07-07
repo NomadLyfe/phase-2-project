@@ -16,3 +16,16 @@ Users, with or without accounts, are able to look at everyone's decks that have 
 
 ![Lotus Forge Demo]()
 
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## Roadmap
+
+I plan on eventually adding the capability to show multiple cards when searching for new cards to add to your decks. 
+
+Also I am planning on adding a search functionality that does not just rely on knowing the name of a card.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
